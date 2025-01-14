@@ -7,6 +7,7 @@ import Login from "../authentication/Login";
 import Register from "../authentication/Register";
 import AvailableCamps from "../pages/AvailableCamps";
 import Dashboard from "../pages/dashboard/Dashboard";
+import AddCamps from "../pages/dashboard/admin/AddCamps";
 
 
   export const router = createBrowserRouter([
@@ -30,7 +31,11 @@ import Dashboard from "../pages/dashboard/Dashboard";
         path: 'dashboard',
         element: <Dashboard></Dashboard>,
         children: [
-            
+            // admin realeted
+            {
+              path: 'addCamps',
+              element: <AddCamps></AddCamps>
+            }
         ]
     },
 
