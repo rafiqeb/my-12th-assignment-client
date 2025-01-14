@@ -1,17 +1,54 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
 
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddCamps = () => {
     const { register, handleSubmit, reset } = useForm();
-    const [startDate, setStartDate] = useState(new Date());
+    const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
+    // const [startDate, setStartDate] = useState(new Date());
 
-    const onSubmit = async () => {
-
+    const onSubmit = async (data) => {
+        const imageFile = { image: data.image[0] }
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        })
+        
+        if (res.data.success) {
+            // send menu item to server
+            const campsItem = {
+                name: data.name,
+                location: data.location,
+                date: data.date,
+                professional_name: data.professional_name,
+                fees: parseFloat(data.fees),
+                description: data.description,
+                image: res.data.data.display_url,
+                participent: 0,
+            }
+            const campsRes = await axiosSecure.post('/camps', campsItem)
+            
+            if (campsRes.data.insertedId) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `${data.name} is added to the camps`,
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                reset();
+            }
+        }
     }
-
     return (
         <div>
             <h2 className="text-3xl font-semibold text-center">Add Camps</h2>
@@ -43,6 +80,12 @@ const AddCamps = () => {
                             <input {...register('date', { required: true })}
                                 required
                                 type="text" placeholder="date and time" className="input input-bordered w-full" />
+                            {/* <DatePicker
+                                type='text' name="deadline"
+                                selected={startDate}
+                                onChange={date => setStartDate(date)}
+                                className="px-4 py-2 rounded-lg w-full border border-blue-300">
+                            </DatePicker> */}
                         </label>
                     </div>
                     <div className="md:flex gap-6">
