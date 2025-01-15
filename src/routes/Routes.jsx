@@ -8,6 +8,7 @@ import Register from "../authentication/Register";
 import AvailableCamps from "../pages/AvailableCamps";
 import Dashboard from "../pages/dashboard/Dashboard";
 import AddCamps from "../pages/dashboard/admin/AddCamps";
+import CampDetails from "../components/CampDetails";
 
 
   export const router = createBrowserRouter([
@@ -22,6 +23,11 @@ import AddCamps from "../pages/dashboard/admin/AddCamps";
         {
             path: 'camps',
             element: <AvailableCamps></AvailableCamps>
+        },
+        {
+          path: 'details/:id',
+          element: <CampDetails></CampDetails>,
+          loader: ({params})=> fetch(`http://localhost:5000/camps/${params.id}`)
         }
       ]
     },
