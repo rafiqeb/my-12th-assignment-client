@@ -9,6 +9,7 @@ import AvailableCamps from "../pages/AvailableCamps";
 import Dashboard from "../pages/dashboard/Dashboard";
 import AddCamps from "../pages/dashboard/admin/AddCamps";
 import CampDetails from "../components/CampDetails";
+import JoinCamp from "../components/JoinCamp";
 
 
   export const router = createBrowserRouter([
@@ -28,7 +29,7 @@ import CampDetails from "../components/CampDetails";
           path: 'details/:id',
           element: <CampDetails></CampDetails>,
           loader: ({params})=> fetch(`http://localhost:5000/camps/${params.id}`)
-        }
+        },
       ]
     },
 
@@ -46,6 +47,11 @@ import CampDetails from "../components/CampDetails";
     },
 
 
+    {
+      path: 'joinCamp/:id',
+      element: <JoinCamp></JoinCamp>,
+      loader: ({params})=> fetch(`http://localhost:5000/camps/${params.id}`)
+    },
     {
         path: 'login',
         element: <Login></Login>

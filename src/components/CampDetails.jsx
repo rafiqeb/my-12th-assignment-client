@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 
 const CampDetails = () => {
@@ -23,7 +23,9 @@ const CampDetails = () => {
                     <div className="border border-slate-400 mt-2 mb-3"></div>
                     <h3 className="text-xl font-semibold">Name: {professional_name}</h3>
                     <div className="text-center">
-                        <button className="btn btn-outline border-0 border-b-2 border-orange-400 bg-slate-200 mt-6">Join Camp</button>
+                        <Link to={`/joinCamp/${_id}`}>
+                            <button className="btn btn-outline border-0 border-b-2 border-orange-400 bg-slate-200 mt-6">Join Camp</button>
+                        </Link>
                     </div>
                 </div>
             </div>
