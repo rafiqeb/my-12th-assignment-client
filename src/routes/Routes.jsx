@@ -11,6 +11,9 @@ import AddCamps from "../pages/dashboard/admin/AddCamps";
 import CampDetails from "../components/CampDetails";
 import JoinCamp from "../components/JoinCamp";
 import RegisteredCamp from "../pages/dashboard/user/RegisteredCamp";
+import ManageCamps from "../pages/dashboard/admin/ManageCamps";
+import UpdateItem from "../pages/dashboard/admin/UpdateItem";
+import ManageRegister from "../pages/dashboard/admin/ManageRegister";
 
 
   export const router = createBrowserRouter([
@@ -43,6 +46,19 @@ import RegisteredCamp from "../pages/dashboard/user/RegisteredCamp";
             {
               path: 'addCamps',
               element: <AddCamps></AddCamps>
+            },
+            {
+              path: 'manageCamps',
+              element: <ManageCamps></ManageCamps>
+            },
+            {
+              path: 'registerCamps',
+              element: <ManageRegister></ManageRegister>
+            },
+            {
+              path: 'update/:id',
+              element: <UpdateItem></UpdateItem>,
+              loader: ({params})=> fetch(`http://localhost:5000/camps/${params.id}`)
             },
 
             // user realeted

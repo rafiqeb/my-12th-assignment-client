@@ -4,7 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
 
-    const isAdmin = false;
+    const isAdmin = true;
 
     return (
         <div className="max-w-7xl mx-auto">
