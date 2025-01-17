@@ -1,17 +1,50 @@
 import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../authentication/AuthProvider";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 
 const JoinCamp = () => {
     const { user } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const axiosSecure = useAxiosSecure()
     const { register, handleSubmit, reset } = useForm();
     const data = useLoaderData()
     const { _id, name, image, fees, description, participent, location, date, professional_name } = data;
 
-    const onSubmit = () => {
-
+    const onSubmit = async (data) => {
+        const joinItem = {
+            camp_name: name,
+            camp_fees: fees,
+            campId: _id,
+            name: user?.displayName,
+            email: user?.email,
+            payment_status: 'pay',
+            confirmation_status: 'pending',
+            age: parseInt(data.age),
+            gender: data.gender,
+            phone: data.phone,
+        }
+        try {
+            const res = await axiosSecure.post('/joinCamps', joinItem)
+            if (res.data.insertedId) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `${name} is added to the Join camps`,
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                navigate('/')
+            }
+        }
+        catch (error) {
+            console.log(error)
+            toast.error(error.message)
+        }
     }
 
     useEffect(() => {
@@ -28,7 +61,7 @@ const JoinCamp = () => {
                             <h3 className="font-bold text-lg">Camp name: {name}</h3>
                             <div className="flex justify-between">
                                 <p>Location: {location}</p>
-                                <p>Fees: {fees}</p>
+                                <p>Fees: ${fees}</p>
                             </div>
                             <h3 className="font-bold text-lg">Professional Name: {professional_name}</h3>
                             <div className="flex justify-between">
@@ -87,8 +120,9 @@ const JoinCamp = () => {
 
                         <div className="modal-action">
                             <form method="dialog">
-                                {/* if there is a button in form, it will close the modal */}
-                                {/* <button className="btn">Close</button> */}
+                                <Link to='/'>
+                                    <button className="btn btn-outline border-0 border-b-2 border-orange-400 bg-slate-200 mt-6">Back home</button>
+                                </Link>
                             </form>
                         </div>
                     </div>

@@ -10,6 +10,7 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import AddCamps from "../pages/dashboard/admin/AddCamps";
 import CampDetails from "../components/CampDetails";
 import JoinCamp from "../components/JoinCamp";
+import RegisteredCamp from "../pages/dashboard/user/RegisteredCamp";
 
 
   export const router = createBrowserRouter([
@@ -42,6 +43,12 @@ import JoinCamp from "../components/JoinCamp";
             {
               path: 'addCamps',
               element: <AddCamps></AddCamps>
+            },
+
+            // user realeted
+            {
+              path: 'joinCamps',
+              element: <RegisteredCamp></RegisteredCamp>
             }
         ]
     },

@@ -3,8 +3,6 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Camp from "./Camp";
 import { Link } from "react-router-dom";
 
-// const sorted = [...allGames].sort((a, b) => b.rating - a.rating)
-//         setGames(sorted.slice(0, 6))
 const PopularCamps = () => {
     const axiosPublic = useAxiosPublic()
     const [camps, setCamps] = useState([])
