@@ -1,10 +1,11 @@
 import { FaBook, FaHome, FaList, FaUser, FaUtensils } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../../hooks/useAdmin";
 
 
 const Dashboard = () => {
 
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
 
     return (
         <div className="max-w-7xl mx-auto">
