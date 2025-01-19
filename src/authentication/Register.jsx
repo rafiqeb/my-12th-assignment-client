@@ -1,15 +1,19 @@
 import { useContext } from "react";
 import { AuthContext } from "./AuthProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import SocialLogin from "./SocialLogin";
 
 
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
 
 const Register = () => {
     const { creatUser, updateUserProfile, setUser } = useContext(AuthContext)
+    const axiosPublic = useAxiosPublic()
     const navigate = useNavigate();
+    const location = useLocation()
 
     const handleRegister = async(e)=> {
         e.preventDefault();
@@ -28,14 +32,24 @@ const Register = () => {
         try {
             const result = await creatUser(email, password)
             await updateUserProfile(name, photo)
-            setUser({ ...result.user, photoURL: photo, displayName: name })
-            Swal.fire({
-                title: 'Success!',
-                text: 'Registration successfully',
-                icon: 'success',
-                confirmButtonText: 'Ok'
+            // setUser({ ...result.user, photoURL: photo, displayName: name })
+            const userInfo = {
+                name: name,
+                email: email,
+            }
+            axiosPublic.post('/users', userInfo)
+            .then(res => {
+                if (res.data.insertedId) {
+                    form.reset()
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Registration successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+                    navigate(location?.state ? location.state : '/')
+                }
             })
-            navigate('/')
         } catch (error) {
             toast.error(error?.message)
         }
@@ -47,8 +61,9 @@ const Register = () => {
                 <h2 className="text-3xl font-bold text-center mt-6">Register your account</h2>
                 <div className="max-w-lg mx-auto bg-base-200 p-10 shadow-xl rounded-xl">
                     <form onSubmit={handleRegister}>
+                        <SocialLogin></SocialLogin>
                         <div>
-                            <h3 className="text-lg font-semibold">Name:</h3>
+                            <h3 className="text-lg font-semibold mt-4">Name:</h3>
                             <input type="text" name="name" placeholder="name"
                                 className="px-4 py-2 rounded-lg w-full border border-blue-300" />
                         </div>

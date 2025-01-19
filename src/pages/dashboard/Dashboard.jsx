@@ -1,4 +1,4 @@
-import { FaBook, FaHome, FaList, FaUtensils } from "react-icons/fa";
+import { FaBook, FaHome, FaList, FaUser, FaUtensils } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 
 
@@ -25,6 +25,9 @@ const Dashboard = () => {
                                 <li><NavLink to='/dashboard/registerCamps'>
                                     <FaBook />
                                     Manage Registered Camps</NavLink></li>
+                                <li><NavLink to='/dashboard/allUsers'>
+                                    <FaUser />
+                                    All Users</NavLink></li>
                             </> : <>
                                 <li><NavLink to='/dashboard/userProfile'>
                                     <FaHome />

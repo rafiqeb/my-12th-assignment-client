@@ -1,14 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from "./AuthProvider";
 import toast from "react-hot-toast";
+import SocialLogin from "./SocialLogin";
 
 
 const Login = () => {
-    const { signIn, signInWithGoogle } = useContext(AuthContext)
+    const { signIn } = useContext(AuthContext)
     const [disable, setDisable] = useState(true)
+    const location = useLocation()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -32,20 +33,8 @@ const Login = () => {
         const password = form.password.value;
         signIn(email, password)
             .then(result => {
-                console.log(result.user)
-                // navigate(from, { replace: true })
-                navigate('/')
-            })
-    }
-
-    const handleGoogleLogin = () => {
-        signInWithGoogle()
-            .then(result => {
                 toast.success('Signin Successful')
-                navigate('/')
-            })
-            .catch(error => {
-                toast.error(error?.message)
+                navigate(location?.state ? location.state : '/')
             })
     }
 
@@ -55,12 +44,7 @@ const Login = () => {
                 <h2 className="text-3xl font-bold text-center mt-6">Login your account</h2>
                 <div className="max-w-lg mx-auto bg-base-200 p-10 shadow-xl rounded-xl">
                     <form onSubmit={handleLogin}>
-                        <button type="button"
-                            onClick={handleGoogleLogin}
-                            className="px-4 py-2 rounded-lg w-full border border-blue-300 flex justify-center items-center gap-6">
-                            <p className="text-2xl"><FcGoogle /></p>
-                            <h4 className="font-semibold">Login with Google</h4>
-                        </button>
+                        <SocialLogin></SocialLogin>
                         <div>
                             <h3 className="text-lg font-semibold mt-4">Email:</h3>
                             <input type="email" name="email" placeholder="email"
