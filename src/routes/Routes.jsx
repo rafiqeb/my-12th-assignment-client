@@ -16,6 +16,7 @@ import UpdateItem from "../pages/dashboard/admin/UpdateItem";
 import ManageRegister from "../pages/dashboard/admin/ManageRegister";
 import PrivateRoute from "../secureRoute/PrivateRoute";
 import AllUsers from "../pages/dashboard/admin/AllUsers";
+import AdminRoutes from "../secureRoute/AdminRoutes";
 
 
   export const router = createBrowserRouter([
@@ -47,30 +48,30 @@ import AllUsers from "../pages/dashboard/admin/AllUsers";
             // admin realeted
             {
               path: 'addCamps',
-              element: <AddCamps></AddCamps>
+              element: <AdminRoutes><AddCamps></AddCamps></AdminRoutes>
             },
             {
               path: 'manageCamps',
-              element: <ManageCamps></ManageCamps>
+              element: <AdminRoutes><ManageCamps></ManageCamps></AdminRoutes>
             },
             {
               path: 'registerCamps',
-              element: <ManageRegister></ManageRegister>
+              element: <AdminRoutes><ManageRegister></ManageRegister></AdminRoutes>
             },
             {
               path: 'allUsers',
-              element: <AllUsers></AllUsers>
+              element: <AdminRoutes><AllUsers></AllUsers></AdminRoutes>
             },
             {
               path: 'update/:id',
-              element: <UpdateItem></UpdateItem>,
+              element: <AdminRoutes><UpdateItem></UpdateItem></AdminRoutes>,
               loader: ({params})=> fetch(`http://localhost:5000/camps/${params.id}`)
             },
 
             // user realeted
             {
               path: 'joinCamps',
-              element: <RegisteredCamp></RegisteredCamp>
+              element: <PrivateRoute><RegisteredCamp></RegisteredCamp></PrivateRoute>
             }
         ]
     },

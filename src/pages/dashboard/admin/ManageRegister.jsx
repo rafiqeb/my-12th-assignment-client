@@ -1,18 +1,29 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 
 const ManageRegister = () => {
     const axiosSecure = useAxiosSecure();
-    const [camps, setCamps] = useState([])
 
-    useEffect(() => {
-        const allData = async () => {
-            const res = await axiosSecure.get('/joinCamps');
-            setCamps(res.data);
+    const { refetch, data: camps = [] } = useQuery({
+        queryKey: ['joinCamps'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/joinCamps')
+            return res.data
         }
-        allData()
-    }, [axiosSecure])
+    })
+
+    const handleChange = async (id, prevStatus, status) => {
+        try {
+            const data = await axiosSecure.patch(`/joinCamps-status/${id}`, { status })
+            console.log(data);
+            refetch()
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div>
@@ -37,9 +48,11 @@ const ManageRegister = () => {
                                 <td className="border border-gray-300 px-4 py-2">{item.camp_name}</td>
                                 <td className="border border-gray-300 px-4 py-2">${item.camp_fees}</td>
                                 <td className="border border-gray-300 px-4 py-2">{item.payment_status}</td>
-                                <td className="border border-gray-300 px-4 py-2">{item.confirmation_status}</td>
+                                <td className="border border-gray-300 px-4 py-2">
+                                    {item.confirmation_status === 'Confirmed' ? (<button disabled>{item.confirmation_status}</button>) : (<button onClick={() => handleChange(item._id, item.confirmation_status, 'Confirmed')} className="text-red-500 hover:underline">{item.confirmation_status}</button>)}
+                                </td>
                                 <td className="border border-gray-300 px-4 py-2 text-center">
-                                    <button className="text-red-500 hover:underline">Cancel</button>
+                                    {item.confirmation_status === 'Confirmed' ? (<button disabled>Cancel</button>) : (<button onClick={() => handleChange(item._id, item.confirmation_status, 'Rejected')} className="text-red-500 hover:underline">Cancel</button>)}
                                 </td>
                             </tr>
                         ))}

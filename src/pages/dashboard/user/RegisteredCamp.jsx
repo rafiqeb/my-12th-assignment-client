@@ -1,13 +1,46 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCart from "../../../hooks/useCart";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 
 const RegisteredCamp = () => {
+    const { register, handleSubmit, reset } = useForm();
     const axiosSecure = useAxiosSecure()
+    const navigate = useNavigate()
     const [joinCamps, loading, refetch] = useCart()
     const totalPrice = joinCamps.reduce((total, item) => total + item.camp_fees, 0)
+
+    const handleFeedback = () => {
+        document.getElementById('my_modal_2').showModal()
+    }
+
+    const onSubmit = async (data) => {
+        const feedbackItem = {
+            feedback: data.feedback,
+            rating: parseFloat(data.rating),
+        }
+        try {
+            const res = await axiosSecure.post('/feedback', feedbackItem);
+            console.log(res.data);
+            if (res.data.insertedId) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: 'Thanks for your feedback',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                navigate('/joinCamps')
+            }
+        }
+        catch (err) {
+            console.log(err);
+            toast.error(error.message)
+        }
+    }
 
     const handleDelete = (item) => {
         Swal.fire({
@@ -69,16 +102,42 @@ const RegisteredCamp = () => {
                                 <td className="border border-gray-300 px-4 py-2">{item.payment_status}</td>
                                 <td className="border border-gray-300 px-4 py-2">{item.confirmation_status}</td>
                                 <td className="border border-gray-300 px-4 py-2 text-center">
-                                    <button onClick={() => handleDelete(item)} className="text-red-500 hover:underline">Cancel</button>
+                                    {item.confirmation_status === 'Confirmed' ? (<button disabled>Cancel</button>) : (<button onClick={() => handleDelete(item)} className="text-red-500 hover:underline">Cancel</button>)}
                                 </td>
                                 <td className="border border-gray-300 px-4 py-2 text-center">
-                                    <button className="hover:underline">Feedback</button>
+                                    <button onClick={handleFeedback} className="hover:underline">Feedback</button>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
+            {/* modal */}
+            {/* Open the modal using document.getElementById('ID').showModal() method */}
+            <dialog id="my_modal_2" className="modal">
+                <div className="modal-box">
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <label className="form-control">
+                            <div className="label">
+                                <span className="label-text">Feedback*</span>
+                            </div>
+                            <textarea {...register('feedback', { required: true })} className="textarea textarea-bordered h-24" placeholder="your feedback"></textarea>
+                        </label>
+                        <label className="form-control w-full my-6">
+                            <div className="label">
+                                <span className="label-text">Rating*</span>
+                            </div>
+                            <input {...register('rating',)}
+                                required
+                                type="number" placeholder="rating" step='0.1' className="input input-bordered w-full" />
+                        </label>
+                        <button className="btn btn-warning w-full">Confirm</button>
+                    </form>
+                </div>
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
+            </dialog>
         </div>
     );
 };
