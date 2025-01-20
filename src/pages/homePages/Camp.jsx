@@ -19,7 +19,7 @@ const Camp = ({ camp }) => {
                         <p>Date: {date}</p>
                     </div>
                     <div className="flex justify-between">
-                        <p>Camp Fees: {fees}</p>
+                        <p>Camp Fees: ${fees}</p>
                         <p>Participant: {participent}</p>
                     </div>
                     <h3 className="text-xl font-semibold">Name: {professional_name}</h3>

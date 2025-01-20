@@ -38,7 +38,7 @@ const RegisteredCamp = () => {
         }
         catch (err) {
             console.log(err);
-            toast.error(error.message)
+            toast.error(err.message)
         }
     }
 
@@ -72,7 +72,7 @@ const RegisteredCamp = () => {
     return (
         <div>
             <div className="flex justify-evenly mb-8">
-                <h2 className="text-3xl font-bold">Register Items: {joinCamps.length}</h2>
+                <h2 className="text-3xl font-bold">Register Camps: {joinCamps.length}</h2>
                 <h2 className="text-3xl font-bold">Total Camp Fees: ${totalPrice}</h2>
                 {joinCamps.length ? <Link to='/dashboard/payment'>
                     <button className="btn btn-warning">Pay</button>

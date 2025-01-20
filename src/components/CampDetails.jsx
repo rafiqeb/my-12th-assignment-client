@@ -7,6 +7,9 @@ const CampDetails = () => {
 
     return (
         <div>
+            <div className="bg-slate-200 w-full p-10 rounded-lg">
+                <h2 className="text-4xl font-bold text-center mt-12">Camp Details</h2>
+            </div>
             <div className="flex justify-center items-center bg-base-200 shadow-xl p-2">
                 <div className="space-y-3">
                     <img src={image} alt="" className="rounded-lg" />
