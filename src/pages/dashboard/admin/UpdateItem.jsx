@@ -4,18 +4,24 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react";
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const UpdateItem = () => {
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset, setValue } = useForm();
     const axiosPublic = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
-    const {name, image, fees, description, participent, location, date, professional_name, _id} = useLoaderData()
+    const { name, image, fees, description, participent, location, date, professional_name, _id } = useLoaderData()
+
+    const [startDate, setStartDate] = useState(date);
 
     const onSubmit = async (data) => {
+
         const imageFile = { image: data.image[0] }
         const res = await axiosPublic.post(image_hosting_api, imageFile, {
             headers: {
@@ -23,12 +29,19 @@ const UpdateItem = () => {
             }
         })
 
+        // date and time fixd
+        const formattedDate = new Date(data.date).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+        });
+
         if (res.data.success) {
             // send menu item to server
             const campsItem = {
                 name: data.name,
                 location: data.location,
-                date: data.date,
+                date: formattedDate,
                 professional_name: data.professional_name,
                 fees: parseFloat(data.fees),
                 description: data.description,
@@ -78,15 +91,11 @@ const UpdateItem = () => {
                             <div className="label">
                                 <span className="label-text">Date and Time*</span>
                             </div>
-                            <input {...register('date', { required: true })}
-                                required defaultValue={date}
-                                type="text" placeholder="date and time" className="input input-bordered w-full" />
-                            {/* <DatePicker
-                                type='text' name="deadline"
+                            <DatePicker
                                 selected={startDate}
-                                onChange={date => setStartDate(date)}
+                                onChange={(date) => { setStartDate(date); setValue('date', date) }}
                                 className="px-4 py-2 rounded-lg w-full border border-blue-300">
-                            </DatePicker> */}
+                            </DatePicker>
                         </label>
                     </div>
                     <div className="md:flex gap-6">

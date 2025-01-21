@@ -55,7 +55,7 @@ const ManageCamps = () => {
                             <tr key={item._id} className="hover:bg-gray-50">
                                 <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
                                 <td className="border border-gray-300 px-4 py-2">{item.name}</td>
-                                <td className="border border-gray-300 px-4 py-2">${item.date}</td>
+                                <td className="border border-gray-300 px-4 py-2">{item.date}</td>
                                 <td className="border border-gray-300 px-4 py-2">{item.location}</td>
                                 <td className="border border-gray-300 px-4 py-2">{item.professional_name}</td>
                                 <td className="border border-gray-300 px-4 py-2 text-center">

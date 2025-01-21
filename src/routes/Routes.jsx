@@ -17,6 +17,7 @@ import ManageRegister from "../pages/dashboard/admin/ManageRegister";
 import PrivateRoute from "../secureRoute/PrivateRoute";
 import AllUsers from "../pages/dashboard/admin/AllUsers";
 import AdminRoutes from "../secureRoute/AdminRoutes";
+import Payment from "../pages/dashboard/user/Payment";
 
 
   export const router = createBrowserRouter([
@@ -72,6 +73,10 @@ import AdminRoutes from "../secureRoute/AdminRoutes";
             {
               path: 'joinCamps',
               element: <PrivateRoute><RegisteredCamp></RegisteredCamp></PrivateRoute>
+            },
+            {
+              path: 'payment',
+              element: <PrivateRoute><Payment></Payment></PrivateRoute>
             }
         ]
     },

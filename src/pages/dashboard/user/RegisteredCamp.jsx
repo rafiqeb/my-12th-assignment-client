@@ -74,9 +74,6 @@ const RegisteredCamp = () => {
             <div className="flex justify-evenly mb-8">
                 <h2 className="text-3xl font-bold">Register Camps: {joinCamps.length}</h2>
                 <h2 className="text-3xl font-bold">Total Camp Fees: ${totalPrice}</h2>
-                {joinCamps.length ? <Link to='/dashboard/payment'>
-                    <button className="btn btn-warning">Pay</button>
-                </Link> : <button disabled className="btn btn-warning">Pay</button>}
             </div>
             <div className="p-6">
                 <table className="min-w-full border border-gray-300">
@@ -88,6 +85,7 @@ const RegisteredCamp = () => {
                             <th className="border border-gray-300 px-4 py-2 text-left">Participant Name</th>
                             <th className="border border-gray-300 px-4 py-2 text-left">Payment Status</th>
                             <th className="border border-gray-300 px-4 py-2 text-left">Confirmation Status</th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">Payment Button</th>
                             <th className="border border-gray-300 px-4 py-2 text-center">Cancel Button</th>
                             <th className="border border-gray-300 px-4 py-2 text-center">Feedback Button</th>
                         </tr>
@@ -101,11 +99,18 @@ const RegisteredCamp = () => {
                                 <td className="border border-gray-300 px-4 py-2">{item.name}</td>
                                 <td className="border border-gray-300 px-4 py-2">{item.payment_status}</td>
                                 <td className="border border-gray-300 px-4 py-2">{item.confirmation_status}</td>
-                                <td className="border border-gray-300 px-4 py-2 text-center">
-                                    {item.confirmation_status === 'Confirmed' ? (<button disabled>Cancel</button>) : (<button onClick={() => handleDelete(item)} className="text-red-500 hover:underline">Cancel</button>)}
+                                <td className="border border-gray-300 px-4 py-2">
+
+                                    {item.payment_status === 'Paid' ? (<button disabled className="btn btn-sm btn-warning">Pay</button>) : (<Link to='/dashboard/payment'>
+                                        <button className="btn btn-warning btn-sm hover:underline">Pay</button>
+                                    </Link>)}
+
                                 </td>
                                 <td className="border border-gray-300 px-4 py-2 text-center">
-                                    <button onClick={handleFeedback} className="hover:underline">Feedback</button>
+                                    {item.confirmation_status === 'Confirmed' ? (<button disabled className="btn btn-sm bg-green-700">Cancel</button>) : (<button onClick={() => handleDelete(item)} className="btn btn-sm bg-green-700 hover:underline">Cancel</button>)}
+                                </td>
+                                <td className="border border-gray-300 px-4 py-2 text-center">
+                                    {item.confirmation_status === 'Confirmed' ? (<button onClick={handleFeedback} className="btn btn-sm btn-primary hover:underline">Feedback</button>) : (<button disabled className="btn btn-sm btn-primary">Feedback</button>)}
                                 </td>
                             </tr>
                         ))}

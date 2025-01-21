@@ -39,7 +39,7 @@ const Dashboard = () => {
                                 <li><NavLink to='/dashboard/joinCamps'>
                                     {/* <GrCart /> */}
                                     Registered Camps</NavLink></li>
-                                <li><NavLink to='/dashboard/payment'>
+                                <li><NavLink to='/dashboard/paymentHistory'>
                                     {/* <FaStar /> */}
                                     Payment History</NavLink></li>
                             </>
