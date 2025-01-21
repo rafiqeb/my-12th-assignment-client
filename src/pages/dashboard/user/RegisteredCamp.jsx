@@ -101,13 +101,13 @@ const RegisteredCamp = () => {
                                 <td className="border border-gray-300 px-4 py-2">{item.confirmation_status}</td>
                                 <td className="border border-gray-300 px-4 py-2">
 
-                                    {item.payment_status === 'Paid' ? (<button disabled className="btn btn-sm btn-warning">Pay</button>) : (<Link to='/dashboard/payment'>
+                                    {item.payment_status === 'Paid' ? (<button disabled className="btn btn-sm btn-warning">Pay</button>) : (<Link to={`/dashboard/payment/${item._id}`}>
                                         <button className="btn btn-warning btn-sm hover:underline">Pay</button>
                                     </Link>)}
 
                                 </td>
                                 <td className="border border-gray-300 px-4 py-2 text-center">
-                                    {item.confirmation_status === 'Confirmed' ? (<button disabled className="btn btn-sm bg-green-700">Cancel</button>) : (<button onClick={() => handleDelete(item)} className="btn btn-sm bg-green-700 hover:underline">Cancel</button>)}
+                                    {item.payment_status === 'Paid' ? (<button disabled className="btn btn-sm bg-green-700">Cancel</button>) : (<button onClick={() => handleDelete(item)} className="btn btn-sm bg-green-700 hover:underline">Cancel</button>)}
                                 </td>
                                 <td className="border border-gray-300 px-4 py-2 text-center">
                                     {item.confirmation_status === 'Confirmed' ? (<button onClick={handleFeedback} className="btn btn-sm btn-primary hover:underline">Feedback</button>) : (<button disabled className="btn btn-sm btn-primary">Feedback</button>)}

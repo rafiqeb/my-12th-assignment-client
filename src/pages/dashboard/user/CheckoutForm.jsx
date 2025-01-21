@@ -4,26 +4,29 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCamps from "../../../hooks/useCamps";
 import { AuthContext } from "../../../authentication/AuthProvider";
 import toast from "react-hot-toast";
+import useCart from "../../../hooks/useCart";
 
 
-const CheckoutForm = () => {
+const CheckoutForm = ({data}) => {
     const [clientSecret, setClientSecret] = useState('')
     const [error, setError] = useState('');
     const [transection, setTransection] = useState()
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
-    const {user} = useContext(AuthContext);
-    const [camps] = useCamps()
+    const { user } = useContext(AuthContext);
+    const [joinCamps] = useCart()
 
-    const totalPrice = camps.reduce((total, item) => total + item.fees, 0)
-
-    useEffect(()=> {
-        axiosSecure.post('/create-payment', {fees: totalPrice})
-        .then(res => {
-            console.log(res.data.clientSecret);
-            setClientSecret(res.data.clientSecret);
-        })
+    const totalPrice = data.camp_fees;
+    
+    useEffect(() => {
+        if (totalPrice > 0) {
+            axiosSecure.post('/create-payment', { fees: totalPrice })
+                .then(res => {
+                    console.log(res.data.clientSecret);
+                    setClientSecret(res.data.clientSecret);
+                })
+        }
     }, [axiosSecure, totalPrice])
 
     const handleSubmit = async (event) => {
@@ -48,7 +51,7 @@ const CheckoutForm = () => {
             setError('')
         }
         // confirm payment
-        const {paymentIntent, error: confirmError} = await stripe.confirmCardPayment(clientSecret, {
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
                 billing_details: {
@@ -57,15 +60,30 @@ const CheckoutForm = () => {
                 }
             }
         })
-        if(confirmError){
+        if (confirmError) {
             console.log('confirm error');
         }
-        else{
+        else {
             console.log('payment intent', paymentIntent);
-            if(paymentIntent.status === 'succeeded'){
+            if (paymentIntent.status === 'succeeded') {
                 console.log('transection id', paymentIntent.id);
-                toast.success('Your transection id', paymentIntent.id)
                 setTransection(paymentIntent.id)
+                const payment = {
+                    email: user?.email,
+                    joinId: data._id,
+                    fees: totalPrice,
+                    transection: paymentIntent.id,
+                    camp_name: data.camp_name,
+                    confirm_status: 'Confirmed',
+                    payment_status: 'Paid',
+                }
+                const res = await axiosSecure.post('/payment', payment)
+                const status = 'Paid'
+                if(res.data.insertedId){
+                    // extra kaj
+                    const result = await axiosSecure.patch(`/joinCamps-status/${data._id}`, { status })
+                    console.log(result.data)
+                }
             }
         }
     }
@@ -90,8 +108,8 @@ const CheckoutForm = () => {
                     }}
                 />
                 <div className="flex justify-center items-center">
-                    <button className="btn btn-primary mt-16 w-1/3" type="submit" 
-                    disabled={!stripe || !clientSecret}
+                    <button className="btn btn-primary mt-16 w-1/3" type="submit"
+                        disabled={!stripe || !clientSecret}
                     >
                         Pay
                     </button>

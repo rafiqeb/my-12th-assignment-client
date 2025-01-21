@@ -75,8 +75,9 @@ import Payment from "../pages/dashboard/user/Payment";
               element: <PrivateRoute><RegisteredCamp></RegisteredCamp></PrivateRoute>
             },
             {
-              path: 'payment',
-              element: <PrivateRoute><Payment></Payment></PrivateRoute>
+              path: 'payment/:id',
+              element: <PrivateRoute><Payment></Payment></PrivateRoute>,
+              loader: ({params})=> fetch(`http://localhost:5000/joinCamp/${params.id}`)
             }
         ]
     },
