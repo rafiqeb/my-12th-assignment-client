@@ -7,7 +7,7 @@ const Analytics = () => {
     const axiosSecure = useAxiosSecure()
 
     const { data: states } = useQuery({
-        queryKey: ['users-state'],
+        queryKey: ['user-state'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users-state')
             console.log(res.data)
@@ -23,7 +23,7 @@ const Analytics = () => {
                         <FaDollarSign className="text-4xl"/>
                     </div>
                     <div className="stat-title">Camp Fees</div>
-                    <div className="stat-value">${states.totalPrice}</div>
+                    <div className="stat-value">${states?.totalPrice}</div>
                     <div className="stat-desc">Jan 1st - Feb 1st</div>
                 </div>
 
@@ -32,7 +32,7 @@ const Analytics = () => {
                         <FaUsers className="text-4xl"/>
                     </div>
                     <div className="stat-title">Users</div>
-                    <div className="stat-value">{states.user}</div>
+                    <div className="stat-value">{states?.user}</div>
                     <div className="stat-desc">↗︎ 400 (22%)</div>
                 </div>
 
@@ -41,7 +41,7 @@ const Analytics = () => {
                         <FaBook className="text-2xl"/>
                     </div>
                     <div className="stat-title">Registered Camps</div>
-                    <div className="stat-value">{states.joinItems}</div>
+                    <div className="stat-value">{states?.joinItems}</div>
                     <div className="stat-desc">↘︎ 90 (14%)</div>
                 </div>
 
@@ -50,7 +50,7 @@ const Analytics = () => {
                         <FaCheckDouble className="text-3xl"/>
                     </div>
                     <div className="stat-title">Payment Camps</div>
-                    <div className="stat-value">{states.payments}</div>
+                    <div className="stat-value">{states?.payments}</div>
                     <div className="stat-desc">↘︎ 90 (14%)</div>
                 </div>
             </div>
