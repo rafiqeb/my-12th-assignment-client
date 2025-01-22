@@ -5,6 +5,7 @@ import useCamps from "../../../hooks/useCamps";
 import { AuthContext } from "../../../authentication/AuthProvider";
 import toast from "react-hot-toast";
 import useCart from "../../../hooks/useCart";
+import { useNavigate } from "react-router-dom";
 
 
 const CheckoutForm = ({data}) => {
@@ -15,6 +16,7 @@ const CheckoutForm = ({data}) => {
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate()
     const [joinCamps] = useCart()
 
     const totalPrice = data.camp_fees;
@@ -71,18 +73,18 @@ const CheckoutForm = ({data}) => {
                 const payment = {
                     email: user?.email,
                     joinId: data._id,
-                    fees: totalPrice,
+                    fees: data.camp_fees,
                     transection: paymentIntent.id,
-                    camp_name: data.camp_name,
-                    confirm_status: 'Confirmed',
-                    payment_status: 'Paid',
                 }
                 const res = await axiosSecure.post('/payment', payment)
                 const status = 'Paid'
                 if(res.data.insertedId){
                     // extra kaj
                     const result = await axiosSecure.patch(`/joinCamps-status/${data._id}`, { status })
-                    console.log(result.data)
+                    if(result.data.modifiedCount > 0){
+                        navigate('/dashboard/paymentHistory')
+                        toast.success('Success Your payment')
+                    }
                 }
             }
         }

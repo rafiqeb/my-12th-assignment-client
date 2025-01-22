@@ -1,4 +1,4 @@
-import { FaBook, FaHome, FaList, FaUser, FaUtensils } from "react-icons/fa";
+import { FaAddressCard, FaBook, FaHome, FaList, FaUser, FaUtensils } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 
@@ -15,7 +15,7 @@ const Dashboard = () => {
                         {
                             isAdmin ? <>
                                 <li><NavLink to='/dashboard/adminProfile'>
-                                    {/* <FaHome /> */}
+                                    <FaAddressCard />
                                     Organizer Profile</NavLink></li>
                                 <li><NavLink to='/dashboard/addCamps'>
                                     <FaUtensils />
@@ -31,7 +31,7 @@ const Dashboard = () => {
                                     All Users</NavLink></li>
                             </> : <>
                                 <li><NavLink to='/dashboard/userProfile'>
-                                    <FaHome />
+                                    <FaAddressCard />
                                     Participant Profile</NavLink></li>
                                 <li><NavLink to='/dashboard/analytics'>
                                 {/* <FaCalendar /> */}

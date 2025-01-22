@@ -18,6 +18,10 @@ import PrivateRoute from "../secureRoute/PrivateRoute";
 import AllUsers from "../pages/dashboard/admin/AllUsers";
 import AdminRoutes from "../secureRoute/AdminRoutes";
 import Payment from "../pages/dashboard/user/Payment";
+import PaymentHistory from "../pages/dashboard/user/PaymentHistory";
+import Analytics from "../pages/dashboard/user/Analytics";
+import AdminProfile from "../pages/dashboard/admin/AdminProfile";
+import UserProfile from "../pages/dashboard/user/UserProfile";
 
 
   export const router = createBrowserRouter([
@@ -48,6 +52,10 @@ import Payment from "../pages/dashboard/user/Payment";
         children: [
             // admin realeted
             {
+              path: 'adminProfile',
+              element: <AdminRoutes><AdminProfile></AdminProfile></AdminRoutes>
+            },
+            {
               path: 'addCamps',
               element: <AdminRoutes><AddCamps></AddCamps></AdminRoutes>
             },
@@ -71,6 +79,14 @@ import Payment from "../pages/dashboard/user/Payment";
 
             // user realeted
             {
+              path: 'userProfile',
+              element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
+            },
+            {
+              path: 'analytics',
+              element: <PrivateRoute><Analytics></Analytics></PrivateRoute>
+            },
+            {
               path: 'joinCamps',
               element: <PrivateRoute><RegisteredCamp></RegisteredCamp></PrivateRoute>
             },
@@ -78,7 +94,12 @@ import Payment from "../pages/dashboard/user/Payment";
               path: 'payment/:id',
               element: <PrivateRoute><Payment></Payment></PrivateRoute>,
               loader: ({params})=> fetch(`http://localhost:5000/joinCamp/${params.id}`)
-            }
+            },
+            {
+              path: 'paymentHistory',
+              element: <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>
+            },
+            
         ]
     },
 
