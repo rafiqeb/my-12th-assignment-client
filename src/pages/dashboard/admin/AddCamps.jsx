@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from "react-router-dom";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -13,6 +14,7 @@ const AddCamps = () => {
     const { register, handleSubmit, reset, setValue } = useForm();
     const axiosPublic = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
+    const navigate = useNavigate()
     const [startDate, setStartDate] = useState(new Date());
 
     const onSubmit = async (data) => {
@@ -53,6 +55,7 @@ const AddCamps = () => {
                     timer: 2000
                 });
                 reset();
+                navigate('/dashboard/manageCamps')
             }
         }
     }

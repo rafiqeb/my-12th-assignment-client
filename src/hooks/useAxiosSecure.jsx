@@ -5,31 +5,31 @@ import { useNavigate } from "react-router-dom";
 
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: 'https://my-12th-assignment-server-seven.vercel.app'
 })
 
 const useAxiosSecure = () => {
-    const {logOut} = useContext(AuthContext)
+    const { logOut } = useContext(AuthContext)
     const navigate = useNavigate()
 
     // request interceptore
-    axiosSecure.interceptors.request.use((config)=> {
+    axiosSecure.interceptors.request.use((config) => {
         const token = localStorage.getItem('access-token')
         // console.log('request stoped', token);
         config.headers.authorization = `Bearer ${token}`
         return config;
-    }, (error)=> {
+    }, (error) => {
         return Promise.reject(error);
     })
 
     // interceptore response
-    axiosSecure.interceptors.response.use((response)=> {
+    axiosSecure.interceptors.response.use((response) => {
         return response;
-    }, async(error)=> {
+    }, async (error) => {
         const status = error.response.status;
         // console.log('status error', status);
-        if(status === 401 || status === 403){
-           await logOut()
+        if (status === 401 || status === 403) {
+            await logOut()
             navigate('/login')
         }
         return Promise.reject(error);

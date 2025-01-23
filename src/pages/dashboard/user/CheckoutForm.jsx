@@ -1,7 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useCamps from "../../../hooks/useCamps";
 import { AuthContext } from "../../../authentication/AuthProvider";
 import toast from "react-hot-toast";
 import useCart from "../../../hooks/useCart";
@@ -11,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 const CheckoutForm = ({data}) => {
     const [clientSecret, setClientSecret] = useState('')
     const [error, setError] = useState('');
-    const [transection, setTransection] = useState()
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
@@ -25,7 +23,6 @@ const CheckoutForm = ({data}) => {
         if (totalPrice > 0) {
             axiosSecure.post('/create-payment', { fees: totalPrice })
                 .then(res => {
-                    console.log(res.data.clientSecret);
                     setClientSecret(res.data.clientSecret);
                 })
         }
@@ -45,11 +42,9 @@ const CheckoutForm = ({data}) => {
             card
         })
         if (error) {
-            console.log('payment error', error);
             setError(error.message)
         }
         else {
-            console.log('payment method', paymentMethod);
             setError('')
         }
         // confirm payment
@@ -66,9 +61,7 @@ const CheckoutForm = ({data}) => {
             console.log('confirm error');
         }
         else {
-            console.log('payment intent', paymentIntent);
             if (paymentIntent.status === 'succeeded') {
-                console.log('transection id', paymentIntent.id);
                 setTransection(paymentIntent.id)
                 const payment = {
                     email: user?.email,
@@ -117,7 +110,6 @@ const CheckoutForm = ({data}) => {
                     </button>
                 </div>
                 <p className="text-red-500 text-center mt-6">{error}</p>
-                {transection && <p className="text-green-600 text-center mt-6">Your transection id: {transection}</p>}
             </form>
         </div>
     );
