@@ -40,7 +40,7 @@ import UserProfile from "../pages/dashboard/user/UserProfile";
         {
           path: 'details/:id',
           element: <CampDetails></CampDetails>,
-          loader: ({params})=> fetch(`https://my-12th-assignment-server-seven.vercel.app/camps/${params.id}`)
+          loader: ({params})=> fetch(`http://localhost:5000/camps/${params.id}`)
         },
       ]
     },
@@ -61,11 +61,13 @@ import UserProfile from "../pages/dashboard/user/UserProfile";
             },
             {
               path: 'manageCamps',
-              element: <AdminRoutes><ManageCamps></ManageCamps></AdminRoutes>
+              element: <AdminRoutes><ManageCamps></ManageCamps></AdminRoutes>,
+              loader: ()=> fetch('http://localhost:5000/campCount')
             },
             {
               path: 'registerCamps',
-              element: <AdminRoutes><ManageRegister></ManageRegister></AdminRoutes>
+              element: <AdminRoutes><ManageRegister></ManageRegister></AdminRoutes>,
+              loader: ()=> fetch('http://localhost:5000/joinCampCount')
             },
             {
               path: 'allUsers',
@@ -74,7 +76,7 @@ import UserProfile from "../pages/dashboard/user/UserProfile";
             {
               path: 'update/:id',
               element: <AdminRoutes><UpdateItem></UpdateItem></AdminRoutes>,
-              loader: ({params})=> fetch(`https://my-12th-assignment-server-seven.vercel.app/camps/${params.id}`)
+              loader: ({params})=> fetch(`http://localhost:5000/camps/${params.id}`)
             },
 
             // user realeted
@@ -93,7 +95,7 @@ import UserProfile from "../pages/dashboard/user/UserProfile";
             {
               path: 'payment/:id',
               element: <PrivateRoute><Payment></Payment></PrivateRoute>,
-              loader: ({params})=> fetch(`https://my-12th-assignment-server-seven.vercel.app/joinCamp/${params.id}`)
+              loader: ({params})=> fetch(`http://localhost:5000/joinCamp/${params.id}`)
             },
             {
               path: 'paymentHistory',
@@ -107,7 +109,7 @@ import UserProfile from "../pages/dashboard/user/UserProfile";
     {
       path: 'joinCamp/:id',
       element: <PrivateRoute><JoinCamp></JoinCamp></PrivateRoute>,
-      loader: ({params})=> fetch(`https://my-12th-assignment-server-seven.vercel.app/camps/${params.id}`)
+      loader: ({params})=> fetch(`http://localhost:5000/camps/${params.id}`)
     },
     {
         path: 'login',

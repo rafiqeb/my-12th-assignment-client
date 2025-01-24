@@ -26,16 +26,21 @@ const Login = () => {
         }
     }
 
-    const handleLogin = (e) => {
+    const handleLogin = async(e) => {
         e.preventDefault();
         const form = e.target
         const email = form.email.value;
         const password = form.password.value;
-        signIn(email, password)
+        try{
+           await signIn(email, password)
             .then(result => {
                 toast.success('Signin Successful')
                 navigate(location?.state ? location.state : '/')
             })
+        }
+        catch(error){
+            toast.error(error.message)
+        }
     }
 
     return (

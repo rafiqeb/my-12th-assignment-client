@@ -1,18 +1,38 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { useLoaderData } from "react-router-dom";
 
 
 const ManageRegister = () => {
     const axiosSecure = useAxiosSecure();
+    const { count } = useLoaderData()
+    const [currentPage, setCurrentPage] = useState(0)
+    const [search, setSearch] = useState('')
 
-    const { refetch, data: camps = [] } = useQuery({
-        queryKey: ['joinCamps'],
-        queryFn: async () => {
-            const res = await axiosSecure.get('/joinCamps')
+    const itemsPerPage = 6;
+    const numberOfPages = Math.ceil(count / itemsPerPage);
+    const pages = [...Array(numberOfPages).keys()];
+
+    const {data: camps = [], refetch} = useQuery({
+        queryKey: ['joinCamps', currentPage, itemsPerPage, search],
+        queryFn: async()=> {
+            const res = await axiosSecure.get(`/joinCamps-pagination?page=${currentPage}&size=${itemsPerPage}&search=${search}`);
             return res.data
         }
     })
+
+    const handleCurrentPage = ()=> {
+        if(currentPage > 0){
+            setCurrentPage(currentPage -1)
+        }
+    }
+
+    const handleNextPage = ()=> {
+        if(currentPage < pages.length -1){
+            setCurrentPage(currentPage +1)
+        }
+    }
 
     const handleChange = async (id, prevStatus, status) => {
         try {
@@ -26,6 +46,13 @@ const ManageRegister = () => {
 
     return (
         <div>
+            <div className="flex justify-evenly">
+                <h2 className="text-3xl font-bold">Manage Register Camps</h2>
+                <div className="join">
+                    <input onChange={(e) => setSearch(e.target.value)} className="input input-bordered join-item" placeholder="search" />
+                    <button className="btn btn-accent join-item rounded-r-full">Search</button>
+                </div>
+            </div>
             <div className="p-6">
                 <table className="min-w-full border border-gray-300">
                     <thead className="bg-gray-100">
@@ -42,7 +69,7 @@ const ManageRegister = () => {
                     <tbody>
                         {camps.map((item, index) => (
                             <tr key={item._id} className="hover:bg-gray-50">
-                                <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
+                                <td className="border border-gray-300 px-4 py-2">{currentPage * itemsPerPage + index + 1}</td>
                                 <td className="border border-gray-300 px-4 py-2">{item.name}</td>
                                 <td className="border border-gray-300 px-4 py-2">{item.camp_name}</td>
                                 <td className="border border-gray-300 px-4 py-2">${item.camp_fees}</td>
@@ -57,6 +84,17 @@ const ManageRegister = () => {
                         ))}
                     </tbody>
                 </table>
+            </div>
+            <div className="pagination">
+                <button onClick={handleCurrentPage}>Prev</button>
+                {
+                    pages.map(page => <button
+                        className={currentPage === page ? 'selected' : ''}
+                        onClick={() => setCurrentPage(page)}
+                        key={page}
+                    >{page + 1}</button>)
+                }
+                <button onClick={handleNextPage}>Next</button>
             </div>
         </div>
     );

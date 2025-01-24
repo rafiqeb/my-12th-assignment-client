@@ -11,6 +11,7 @@ const RegisteredCamp = () => {
     const axiosSecure = useAxiosSecure()
     const navigate = useNavigate()
     const [joinCamps, loading, refetch] = useCart()
+
     const totalPrice = joinCamps.reduce((total, item) => total + item.camp_fees, 0)
 
     const handleFeedback = () => {

@@ -49,7 +49,6 @@ const Analytics = () => {
                         </div>
                         <div className="stat-title">Camp Fees</div>
                         <div className="stat-value">${states.totalPrice}</div>
-                        <div className="stat-desc">Jan 1st - Feb 1st</div>
                     </div>
 
                     <div className="stat">
@@ -58,7 +57,6 @@ const Analytics = () => {
                         </div>
                         <div className="stat-title">Users</div>
                         <div className="stat-value">{states.user}</div>
-                        <div className="stat-desc">↗︎ 400 (22%)</div>
                     </div>
 
                     <div className="stat">
@@ -66,8 +64,7 @@ const Analytics = () => {
                             <FaBook className="text-2xl" />
                         </div>
                         <div className="stat-title">Registered Camps</div>
-                        <div className="stat-value">{states?.joinItems}</div>
-                        <div className="stat-desc">↘︎ 90 (14%)</div>
+                        <div className="stat-value">{states.joinItems}</div>
                     </div>
 
                     <div className="stat">
@@ -76,7 +73,6 @@ const Analytics = () => {
                         </div>
                         <div className="stat-title">Payment Camps</div>
                         <div className="stat-value">{states.payments}</div>
-                        <div className="stat-desc">↘︎ 90 (14%)</div>
                     </div>
                 </div>
                 <div>
