@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../authentication/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 
 const PaymentHistory = () => {
@@ -17,6 +18,7 @@ const PaymentHistory = () => {
 
     return (
         <div>
+            <Helmet><title>HealthAid | Payment History</title></Helmet>
             <h2 className="text-3xl font-bold text-center my-6">Payment History</h2>
             <div className="p-6">
                 <table className="min-w-full border border-gray-300">

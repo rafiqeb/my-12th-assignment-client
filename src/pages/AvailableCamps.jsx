@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import Camp from "./homePages/Camp";
+import { Helmet } from "react-helmet-async";
 
 
 const AvailableCamps = () => {
@@ -37,7 +38,8 @@ const AvailableCamps = () => {
 
     return (
         <div>
-            <div className="bg-slate-200 w-full p-10 rounded-lg">
+            <Helmet><title>HealthAid | Available Camp</title></Helmet>
+            <div className="bg-base-300 w-full p-10 rounded-lg">
                 <h2 className="text-4xl font-bold text-center mt-12">Popular Medical Camps</h2>
             </div>
             <div className="flex flex-col md:flex-row items-center gap-8 md: justify-evenly">

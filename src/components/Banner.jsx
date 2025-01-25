@@ -17,10 +17,10 @@ const Banner = () => {
                 pagination={{
                     type: 'fraction',
                 }}
-                // autoplay={{
-                //     delay: 3000,
-                //     disableOnInteraction: false,
-                // }}
+                autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                }}
                 navigation={true}
                 modules={[Pagination, Autoplay, Navigation]}
                 className="mySwiper"

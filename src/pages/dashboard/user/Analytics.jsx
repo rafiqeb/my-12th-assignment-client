@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FaBook, FaCheckDouble, FaDollarSign, FaUsers } from "react-icons/fa";
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { Helmet } from "react-helmet-async";
 const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
 
 
@@ -40,6 +41,7 @@ const Analytics = () => {
 
     return (
         <div>
+            <Helmet><title>HealthAid Camp | Analytics</title></Helmet>
             <h2 className="text-3xl font-bold text-center my-6">User Analytics</h2>
             <div className="flex flex-col justify-center items-center gap-10">
                 <div className="stats shadow">

@@ -4,6 +4,7 @@ import useCart from "../../../hooks/useCart";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 
 const RegisteredCamp = () => {
@@ -72,6 +73,7 @@ const RegisteredCamp = () => {
 
     return (
         <div>
+            <Helmet><title>HealthAid | Registered Camps</title></Helmet>
             <div className="flex justify-evenly mb-8">
                 <h2 className="text-3xl font-bold">Register Camps: {joinCamps.length}</h2>
                 <h2 className="text-3xl font-bold">Total Camp Fees: ${totalPrice}</h2>

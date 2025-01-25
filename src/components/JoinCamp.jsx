@@ -5,6 +5,7 @@ import { AuthContext } from "../authentication/AuthProvider";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 
 const JoinCamp = () => {
@@ -53,6 +54,7 @@ const JoinCamp = () => {
 
     return (
         <div>
+            <Helmet><title>HealthAid | Join Camps</title></Helmet>
             <div>
                 {/* Open the modal using document.getElementById('ID').showModal() method */}
                 <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">

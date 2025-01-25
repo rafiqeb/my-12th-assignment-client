@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useLoaderData } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 
 const ManageRegister = () => {
@@ -46,6 +47,7 @@ const ManageRegister = () => {
 
     return (
         <div>
+            <Helmet><title>HealthAid | Registered Camps</title></Helmet>
             <div className="flex justify-evenly">
                 <h2 className="text-3xl font-bold">Manage Register Camps</h2>
                 <div className="join">

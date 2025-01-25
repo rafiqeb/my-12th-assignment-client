@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link, useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 
 const ManageCamps = () => {
@@ -71,6 +72,7 @@ const ManageCamps = () => {
 
     return (
         <div>
+            <Helmet><title>HealthAid | Manage Camps</title></Helmet>
             <div className="flex justify-evenly">
                 <h2 className="text-3xl font-bold">Manage Camps</h2>
                 <div className="join">

@@ -25,7 +25,7 @@ const PopularCamps = () => {
                 }
             </div>
             <Link to='/camps'>
-                <button className="btn btn-warning mt-8">See All Camps</button>
+                <button className="btn btn-warning mt-8 mb-4">See All Camps</button>
             </Link>
         </div>
     );

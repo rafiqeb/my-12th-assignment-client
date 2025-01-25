@@ -4,6 +4,7 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { AuthContext } from "./AuthProvider";
 import toast from "react-hot-toast";
 import SocialLogin from "./SocialLogin";
+import { Helmet } from "react-helmet-async";
 
 
 const Login = () => {
@@ -45,6 +46,7 @@ const Login = () => {
 
     return (
         <div>
+            <Helmet><title>HealthAid Camp | Login Page</title></Helmet>
             <div>
                 <h2 className="text-3xl font-bold text-center mt-6">Login your account</h2>
                 <div className="max-w-lg mx-auto bg-base-200 p-10 shadow-xl rounded-xl">

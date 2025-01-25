@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import SocialLogin from "./SocialLogin";
+import { Helmet } from "react-helmet-async";
 
 
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
@@ -57,7 +58,7 @@ const Register = () => {
     }
     return (
         <div>
-            {/* <Helmet><title>Registration Page</title></Helmet> */}
+            <Helmet><title>HealthAid Camp | Registration Page</title></Helmet>
             <div>
                 <h2 className="text-3xl font-bold text-center mt-6">Register your account</h2>
                 <div className="max-w-lg mx-auto bg-base-200 p-10 shadow-xl rounded-xl">

@@ -7,6 +7,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -67,6 +68,7 @@ const UpdateItem = () => {
 
     return (
         <div>
+            <Helmet><title>HealthAid | Update Camps</title></Helmet>
             <h2 className="text-3xl font-semibold text-center">Update Camps</h2>
             <div>
                 <form onSubmit={handleSubmit(onSubmit)}>

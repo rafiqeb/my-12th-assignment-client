@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../authentication/AuthProvider";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 
 const AdminProfile = () => {
@@ -18,6 +19,7 @@ const AdminProfile = () => {
     
     return (
         <div>
+            <Helmet><title>HealthAid | Organizer Profile</title></Helmet>
             <h2 className="text-3xl font-bold text-center my-10">Organizer Profile</h2>
             <div className="flex justify-center items-center gap-8">
                 <img src={profile?.image} alt="" className="w-60 h-60 rounded-lg" />
