@@ -1,8 +1,25 @@
-# React + Vite
+# Medical camp management project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Medical Camp Management System is a comprehensive solution designed to streamline the planning, organization, and execution of medical camps. This system helps healthcare organizations, NGOs, and volunteer groups efficiently manage camp registrations, patient records, medical staff assignments, and resource all ocation. 
+ 
 
-Currently, two official plugins are available:
+ ## Website name: HealthAid Camp
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ ### Organizer name: Kobita
+ - Email: kobita@gmail.com
+ - Password: Kobita@123
+
+
+##   Key features of my project :
+
+- Allows administrators to schedule medical camps.
+- The medical camp assign locations, set dates, and allocate resources efficiently.
+- Enables online or on-site registration of patients, maintaining detailed health records, and tracking their visits.
+- Assigns roles, tracks availability, and manages schedules of doctors, nurses, and volunteers involved in the camp.
+- Captures and stores patients' medical history, test results, prescriptions.
+- Manages the availability of medical supplies, medicines, and equipment.
+- Allows searching and filtering of patients, doctors, and camps based on criteria such as name, date, and location.
+
+
+## 🔗 Live links
+[Assignment-link](https://my-12th-assignment.web.app/)

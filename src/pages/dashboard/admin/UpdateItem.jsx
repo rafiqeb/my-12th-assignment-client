@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import Swal from "sweetalert2";
@@ -16,6 +16,7 @@ const UpdateItem = () => {
     const { register, handleSubmit, reset, setValue } = useForm();
     const axiosPublic = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
+    const navigate = useNavigate()
     const { name, image, fees, description, participent, location, date, professional_name, _id } = useLoaderData()
 
     const [startDate, setStartDate] = useState(date);
@@ -59,6 +60,7 @@ const UpdateItem = () => {
                     timer: 2000
                 });
                 reset();
+                navigate('/dashboard/manageCamps')
             }
         }
     }
@@ -125,7 +127,7 @@ const UpdateItem = () => {
                     <div className="form-control w-full my-6">
                         <input {...register('image', { required: true })} type="file" className="file-input w-full max-w-xs" />
                     </div>
-                    <button className="btn btn-warning w-full">Add Camps</button>
+                    <button className="btn btn-warning w-full">Update Camps</button>
                 </form>
             </div>
         </div>

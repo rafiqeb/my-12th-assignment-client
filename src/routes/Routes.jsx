@@ -22,12 +22,14 @@ import PaymentHistory from "../pages/dashboard/user/PaymentHistory";
 import Analytics from "../pages/dashboard/user/Analytics";
 import AdminProfile from "../pages/dashboard/admin/AdminProfile";
 import UserProfile from "../pages/dashboard/user/UserProfile";
+import ErrorPage from "../pages/ErrorPage";
 
 
   export const router = createBrowserRouter([
     {
       path: "/",
       element: <MainLayout></MainLayout>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
             path: '/',
@@ -40,7 +42,7 @@ import UserProfile from "../pages/dashboard/user/UserProfile";
         {
           path: 'details/:id',
           element: <CampDetails></CampDetails>,
-          loader: ({params})=> fetch(`http://localhost:5000/camps/${params.id}`)
+          loader: ({params})=> fetch(`https://my-12th-assignment-server-seven.vercel.app/camps/${params.id}`)
         },
       ]
     },
@@ -62,12 +64,12 @@ import UserProfile from "../pages/dashboard/user/UserProfile";
             {
               path: 'manageCamps',
               element: <AdminRoutes><ManageCamps></ManageCamps></AdminRoutes>,
-              loader: ()=> fetch('http://localhost:5000/campCount')
+              loader: ()=> fetch('https://my-12th-assignment-server-seven.vercel.app/campCount')
             },
             {
               path: 'registerCamps',
               element: <AdminRoutes><ManageRegister></ManageRegister></AdminRoutes>,
-              loader: ()=> fetch('http://localhost:5000/joinCampCount')
+              loader: ()=> fetch('https://my-12th-assignment-server-seven.vercel.app/joinCampCount')
             },
             {
               path: 'allUsers',
@@ -76,7 +78,7 @@ import UserProfile from "../pages/dashboard/user/UserProfile";
             {
               path: 'update/:id',
               element: <AdminRoutes><UpdateItem></UpdateItem></AdminRoutes>,
-              loader: ({params})=> fetch(`http://localhost:5000/camps/${params.id}`)
+              loader: ({params})=> fetch(`https://my-12th-assignment-server-seven.vercel.app/camps/${params.id}`)
             },
 
             // user realeted
@@ -95,7 +97,7 @@ import UserProfile from "../pages/dashboard/user/UserProfile";
             {
               path: 'payment/:id',
               element: <PrivateRoute><Payment></Payment></PrivateRoute>,
-              loader: ({params})=> fetch(`http://localhost:5000/joinCamp/${params.id}`)
+              loader: ({params})=> fetch(`https://my-12th-assignment-server-seven.vercel.app/joinCamp/${params.id}`)
             },
             {
               path: 'paymentHistory',
@@ -109,7 +111,7 @@ import UserProfile from "../pages/dashboard/user/UserProfile";
     {
       path: 'joinCamp/:id',
       element: <PrivateRoute><JoinCamp></JoinCamp></PrivateRoute>,
-      loader: ({params})=> fetch(`http://localhost:5000/camps/${params.id}`)
+      loader: ({params})=> fetch(`https://my-12th-assignment-server-seven.vercel.app/camps/${params.id}`)
     },
     {
         path: 'login',
