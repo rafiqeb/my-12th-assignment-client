@@ -62,7 +62,6 @@ const CheckoutForm = ({data}) => {
         }
         else {
             if (paymentIntent.status === 'succeeded') {
-                setTransection(paymentIntent.id)
                 const payment = {
                     email: user?.email,
                     joinId: data._id,
