@@ -14,16 +14,16 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const UpdateItem = () => {
-    const { register, handleSubmit, reset, setValue } = useForm();
+    const { name, image, fees, description, participent, location, date, professional_name, _id } = useLoaderData()
+    const [startDate, setStartDate] = useState(date);
+    const { register, handleSubmit, reset, setValue } = useForm({
+        defaultValues: {date: startDate || ''}
+    });
     const axiosPublic = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
     const navigate = useNavigate()
-    const { name, image, fees, description, participent, location, date, professional_name, _id } = useLoaderData()
-
-    const [startDate, setStartDate] = useState(date);
-
+    
     const onSubmit = async (data) => {
-
         const imageFile = { image: data.image[0] }
         const res = await axiosPublic.post(image_hosting_api, imageFile, {
             headers: {

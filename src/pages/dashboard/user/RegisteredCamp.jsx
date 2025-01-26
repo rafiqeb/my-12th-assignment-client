@@ -26,7 +26,6 @@ const RegisteredCamp = () => {
         }
         try {
             const res = await axiosSecure.post('/feedback', feedbackItem);
-            console.log(res.data);
             if (res.data.insertedId) {
                 Swal.fire({
                     position: "top-end",
@@ -35,7 +34,7 @@ const RegisteredCamp = () => {
                     showConfirmButton: false,
                     timer: 2000
                 });
-                navigate('/joinCamps')
+                navigate('/')
             }
         }
         catch (err) {

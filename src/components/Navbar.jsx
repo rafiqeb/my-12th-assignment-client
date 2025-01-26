@@ -10,16 +10,16 @@ const Navbar = () => {
     const [isAdmin] = useAdmin()
     const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
 
-    const handleTogle = (e)=> {
-        if(e.target.checked){
+    const handleTogle = (e) => {
+        if (e.target.checked) {
             setTheme('dark')
         }
-        else{
+        else {
             setTheme('light')
         }
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         localStorage.setItem('theme', theme)
         const localTheme = localStorage.getItem('theme')
         document.querySelector('html').setAttribute('data-theme', localTheme)
@@ -32,13 +32,15 @@ const Navbar = () => {
     </>
 
     const links2 = <>
-        <li><Link to='/'>Home</Link></li>
+        {user && <li>{user?.displayName}</li>}
+        <li className="md:hidden"><Link to='/'>Home</Link></li>
+        <li className="md:hidden"><Link to='camps'>Available Camps</Link></li>
         {isAdmin ? <li><Link to='/dashboard/adminProfile'>Dashboard</Link></li> : <li><Link to='/dashboard/userProfile'>Dashboard</Link></li>}
         {
             user ? <>
                 <li onClick={logOut}><Link>Log out</Link></li>
             </> : <>
-                <li><Link to='/login'>Join us</Link></li>
+                <li className="md:hidden"><Link to='/login'>Join us</Link></li>
             </>
         }
     </>

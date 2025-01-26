@@ -1,6 +1,9 @@
 import { FaAddressCard, FaBook, FaHome, FaList, FaUser, FaUtensils } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
+import { GiCampingTent } from "react-icons/gi";
+import { SiGoogleanalytics } from "react-icons/si";
+import { MdOutlinePayment } from "react-icons/md";
 
 
 const Dashboard = () => {
@@ -9,9 +12,9 @@ const Dashboard = () => {
 
     return (
         <div className="max-w-7xl mx-auto">
-            <div className="flex">
-                <div className="w-64 min-h-screen bg-orange-400">
-                    <ul className="menu p-4">
+            <div className="flex flex-col lg:flex-row">
+                <div className="lg:w-64 Lg:min-h-screen bg-orange-400">
+                    <ul className="menu p-4 grid grid-cols-2 lg:grid-cols-1">
                         {
                             isAdmin ? <>
                                 <li><NavLink to='/dashboard/adminProfile'>
@@ -34,13 +37,13 @@ const Dashboard = () => {
                                     <FaAddressCard />
                                     Participant Profile</NavLink></li>
                                 <li><NavLink to='/dashboard/analytics'>
-                                {/* <FaCalendar /> */}
+                                    <SiGoogleanalytics />
                                     Analytics</NavLink></li>
                                 <li><NavLink to='/dashboard/joinCamps'>
-                                    {/* <GrCart /> */}
+                                    <FaBook />
                                     Registered Camps</NavLink></li>
                                 <li><NavLink to='/dashboard/paymentHistory'>
-                                    {/* <FaStar /> */}
+                                    <MdOutlinePayment />
                                     Payment History</NavLink></li>
                             </>
                         }
@@ -50,11 +53,11 @@ const Dashboard = () => {
                             <FaHome />
                             Home</NavLink></li>
                         <li><NavLink to='/camps'>
-                            {/* <FaSearch /> */}
+                            <GiCampingTent />
                             Available Camps</NavLink></li>
                     </ul>
                 </div>
-                <div className="flex-1 p-8">
+                <div className="flex-1 mt-12 lg:mt-0 lg:p-8 ">
                     <Outlet></Outlet>
                 </div>
             </div>

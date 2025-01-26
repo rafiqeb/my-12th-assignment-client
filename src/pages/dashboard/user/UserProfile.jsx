@@ -26,6 +26,7 @@ const UserProfile = () => {
                     <h3 className="text-xl font-bold mb-4">Name: {profile?.name}</h3>
                     <p>Contact me: {profile?.email}</p>
                 </div>
+                {/* <button className="btn btn-warning">Update</button> */}
             </div>
         </div>
     );
