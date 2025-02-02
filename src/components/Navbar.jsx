@@ -49,14 +49,14 @@ const Navbar = () => {
         <div>
             <div className="navbar max-w-screen-xl fixed z-10 bg-opacity-40 bg-black text-white">
                 <div className="navbar-start">
-                    <div className="btn">
-                        <label className="swap swap-rotate">
+                    <div className="btn btn-sm">
+                        <label className="swap swap-rotate animate-[spin_4s_linear_infinite]">
                             {/* this hidden checkbox controls the state */}
                             <input onChange={handleTogle} type="checkbox" className="theme-controller" value="synthwave" />
 
                             {/* sun icon */}
                             <svg
-                                className="swap-off h-10 w-10 fill-current"
+                                className="swap-off h-6 w-6 fill-current"
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24">
                                 <path
@@ -65,7 +65,7 @@ const Navbar = () => {
 
                             {/* moon icon */}
                             <svg
-                                className="swap-on h-10 w-10 fill-current"
+                                className="swap-on h-6 w-6 fill-current"
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24">
                                 <path
