@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet-async";
 const AvailableCamps = () => {
     const axiosPublic = useAxiosPublic()
     const [camps, setCamps] = useState([])
+    const [loading, setloading] = useState(true)
     const [search, setSearch] = useState('')
     const [layout, setLayout] = useState(false)
 
@@ -14,9 +15,11 @@ const AvailableCamps = () => {
         const fetchData = async () => {
             const res = await axiosPublic.get(`/all-camps?search=${search}`)
             setCamps(res.data);
+            setloading(false)
         }
         fetchData()
     }, [axiosPublic, search])
+
     const handleSort = (sortBy) => {
         if (sortBy === 'register') {
             const sorted = [...camps].sort((a, b) => b.participent - a.participent)
@@ -39,6 +42,9 @@ const AvailableCamps = () => {
     return (
         <div>
             <Helmet><title>HealthAid | Available Camp</title></Helmet>
+            {loading && (<div className="flex justify-center items-center min-h-screen">
+                <span className="loading loading-spinner loading-lg"></span>
+            </div>)}
             <div className="bg-base-100 w-full py-6 rounded-lg">
                 <h2 className="text-4xl font-bold text-center mt-20">Popular Medical Camps</h2>
             </div>
