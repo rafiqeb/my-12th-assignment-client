@@ -9,10 +9,10 @@ const CampDetails = () => {
     return (
         <div>
             <Helmet><title>HealthAid | Camp Details</title></Helmet>
-            <div className="bg-base-300 w-full p-10 rounded-lg">
-                <h2 className="text-4xl font-bold text-center mt-12">Camp Details</h2>
+            <div className="bg-base-100 w-full py-4 rounded-lg">
+                <h2 className="text-4xl font-bold text-center mt-20">Camp Details</h2>
             </div>
-            <div className="flex justify-center items-center bg-base-200 shadow-xl p-2">
+            <div className="flex justify-center items-center bg-base-200 shadow-xl rounded-lg p-2 mt-4">
                 <div className="space-y-3">
                     <img src={image} alt="" className="rounded-lg" />
                     <h2 className="text-xl font-bold">{name}</h2>

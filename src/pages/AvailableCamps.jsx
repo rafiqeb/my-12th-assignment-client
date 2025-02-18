@@ -39,10 +39,10 @@ const AvailableCamps = () => {
     return (
         <div>
             <Helmet><title>HealthAid | Available Camp</title></Helmet>
-            <div className="bg-base-300 w-full p-10 rounded-lg">
-                <h2 className="text-4xl font-bold text-center mt-12">Popular Medical Camps</h2>
+            <div className="bg-base-100 w-full py-6 rounded-lg">
+                <h2 className="text-4xl font-bold text-center mt-20">Popular Medical Camps</h2>
             </div>
-            <div className="flex flex-col md:flex-row items-center gap-8 md: justify-evenly">
+            <div className="flex flex-col md:flex-row items-center gap-8 md: justify-evenly mt-6">
                 <div className="dropdown dropdown-right">
                     <div tabIndex={0} role="button" className="btn btn-accent m-1">Sort By</div>
                     <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] p-2 shadow">
@@ -58,13 +58,13 @@ const AvailableCamps = () => {
                 <button onClick={handleToggle} className="btn btn-accent">Change Layout</button>
             </div>
             {layout ? (
-                <div className="grid md:grid-cols-2 lg:ml-32 gap-8 mt-8">
+                <div className="grid md:grid-cols-2 lg:ml-32 gap-8 mt-12">
                     {
                         camps.map(camp => <Camp key={camp._id} camp={camp}></Camp>)
                     }
                 </div>
             ) : (
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
                     {
                         camps.map(camp => <Camp key={camp._id} camp={camp}></Camp>)
                     }
