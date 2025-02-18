@@ -22,7 +22,7 @@ const Feedback = () => {
     }, [axiosPublic])
 
     return (
-        <div>
+        <div id='feedback'>
             <h2 className="text-3xl font-bold text-center">Feedback and Ratings</h2>
             <div className="mt-16 mb-10">
                 <Swiper navigation={true} modules={[Navigation]} className="mySwiper">

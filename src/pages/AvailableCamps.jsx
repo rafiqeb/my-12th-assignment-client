@@ -57,11 +57,11 @@ const AvailableCamps = () => {
                         <li onClick={() => handleSort('name')}><a>Camp Name</a></li>
                     </ul>
                 </div>
+                <button onClick={handleToggle} className="btn btn-accent">Change Layout</button>
                 <div className="join">
                     <input onChange={(e) => setSearch(e.target.value)} className="input input-bordered join-item" placeholder="search" />
                     <button className="btn btn-accent join-item rounded-r-full">Search</button>
                 </div>
-                <button onClick={handleToggle} className="btn btn-accent">Change Layout</button>
             </div>
             {layout ? (
                 <div className="grid md:grid-cols-2 lg:ml-32 gap-8 mt-12">

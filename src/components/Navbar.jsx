@@ -28,19 +28,25 @@ const Navbar = () => {
     const links = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='camps'>Available Camps</Link></li>
+        {user && <li><a href="#popularCamps">Popular Camps</a></li>}
+        {user && <li><a href="#recentCamps">Recent Camps</a></li>}
+        {user && <li><a href="#feedback">Feedback</a></li>}
         {!user && <li><Link to='/login'>Join us</Link></li>}
     </>
 
     const links2 = <>
         {user && <li>{user?.displayName}</li>}
-        <li className="md:hidden"><Link to='/'>Home</Link></li>
-        <li className="md:hidden"><Link to='camps'>Available Camps</Link></li>
+        <li className="lg:hidden"><Link to='/'>Home</Link></li>
+        <li className="lg:hidden"><Link to='camps'>Available Camps</Link></li>
         {isAdmin ? <li><Link to='/dashboard/adminProfile'>Dashboard</Link></li> : <li><Link to='/dashboard/userProfile'>Dashboard</Link></li>}
+        {user && <li className="lg:hidden"><a href="#popularCamps">Popular Camps</a></li>}
+        {user && <li className="lg:hidden"><a href="#recentCamps">Recent Camps</a></li>}
+        {user && <li className="lg:hidden"><a href="#feedback">Feedback</a></li>}
         {
             user ? <>
                 <li onClick={logOut}><Link>Log out</Link></li>
             </> : <>
-                <li className="md:hidden"><Link to='/login'>Join us</Link></li>
+                <li className="lg:hidden"><Link to='/login'>Join us</Link></li>
             </>
         }
     </>
@@ -75,7 +81,7 @@ const Navbar = () => {
                     </div>
                     <a className="btn btn-ghost text-xl">HealthAid Camp</a>
                 </div>
-                <div className="navbar-center hidden md:flex">
+                <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         {links}
                     </ul>
