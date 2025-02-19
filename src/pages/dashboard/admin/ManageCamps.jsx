@@ -73,6 +73,7 @@ const ManageCamps = () => {
     return (
         <div>
             <Helmet><title>HealthAid | Manage Camps</title></Helmet>
+            {/* search functionality */}
             <div className="flex justify-evenly">
                 <h2 className="text-3xl font-bold">Manage Camps</h2>
                 <div className="join">
@@ -80,6 +81,7 @@ const ManageCamps = () => {
                     <button className="btn btn-accent join-item rounded-r-full">Search</button>
                 </div>
             </div>
+            {/* table formate all data */}
             <div className="p-6">
                 <table className="min-w-full border border-gray-300">
                     <thead className="bg-gray-100">
@@ -114,6 +116,7 @@ const ManageCamps = () => {
                     </tbody>
                 </table>
             </div>
+            {/* pagination functionality */}
             <div className="pagination">
                 <button onClick={handleCurrentPage}>Prev</button>
                 {

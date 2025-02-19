@@ -48,6 +48,8 @@ const AvailableCamps = () => {
             <div className="bg-base-100 w-full py-6 rounded-lg">
                 <h2 className="text-4xl font-bold text-center mt-20">Popular Medical Camps</h2>
             </div>
+
+            {/* sort and search functionality */}
             <div className="flex flex-col md:flex-row items-center gap-8 md: justify-evenly mt-6">
                 <div className="dropdown dropdown-right">
                     <div tabIndex={0} role="button" className="btn btn-accent m-1">Sort By</div>
