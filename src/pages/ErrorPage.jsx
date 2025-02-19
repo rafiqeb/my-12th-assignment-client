@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import image from '../assets/error.jpg'
+import image from '../assets/error page.avif'
 import { Helmet } from 'react-helmet-async';
 
 const ErrorPage = () => {
@@ -12,7 +12,7 @@ const ErrorPage = () => {
                 <img className='w-[480px] h-[480px]' src={image} alt="" />
             </div>
             <div className='flex justify-center items-center mt-4'>
-                <button onClick={() => navigate('/')} className='btn btn-warning'>Back Home</button>
+                <button onClick={() => navigate('/')} className='btn btn-primary'>Back Home</button>
             </div>
         </div>
     );
