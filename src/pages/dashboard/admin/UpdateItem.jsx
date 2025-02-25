@@ -129,7 +129,7 @@ const UpdateItem = () => {
                     <div className="form-control w-full my-6">
                         <input {...register('image', { required: true })} type="file" className="file-input w-full max-w-xs" />
                     </div>
-                    <button className="btn btn-warning w-full">Update Camps</button>
+                    <button className="btn btn-primary w-full">Update Camps</button>
                 </form>
             </div>
         </div>

@@ -53,7 +53,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <div className="navbar max-w-screen-xl fixed z-10 bg-opacity-40 bg-black text-white">
+            <div className="navbar max-w-screen-xl fixed z-10 bg-opacity-80 bg-base-100">
                 <div className="navbar-start">
                     <div className="btn btn-sm">
                         <label className="swap swap-rotate animate-[spin_4s_linear_infinite]">

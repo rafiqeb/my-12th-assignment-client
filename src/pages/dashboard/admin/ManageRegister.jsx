@@ -48,14 +48,14 @@ const ManageRegister = () => {
     return (
         <div>
             <Helmet><title>HealthAid | Registered Camps</title></Helmet>
-            <div className="flex justify-evenly">
+            <div className="flex flex-col md:flex-row gap-6 items-center justify-evenly">
                 <h2 className="text-3xl font-bold">Manage Register Camps</h2>
                 <div className="join">
                     <input onChange={(e) => setSearch(e.target.value)} className="input input-bordered join-item" placeholder="search" />
-                    <button className="btn btn-accent join-item rounded-r-full">Search</button>
+                    <button className="btn btn-primary join-item rounded-r-full">Search</button>
                 </div>
             </div>
-            <div className="p-6">
+            <div className="p-6 overflow-x-auto">
                 <table className="min-w-full border border-gray-300">
                     <thead className="bg-gray-100">
                         <tr>

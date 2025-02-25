@@ -43,7 +43,7 @@ const Analytics = () => {
         <div>
             <Helmet><title>HealthAid Camp | Analytics</title></Helmet>
             <h2 className="text-3xl font-bold text-center my-6">User Analytics</h2>
-            <div className="flex flex-col justify-center items-center gap-10">
+            <div className="overflow-x-auto flex flex-col justify-center items-center gap-10">
                 <div className="stats shadow">
                     <div className="stat">
                         <div className="stat-figure text-secondary">

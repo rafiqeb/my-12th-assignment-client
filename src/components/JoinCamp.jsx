@@ -115,7 +115,7 @@ const JoinCamp = () => {
                                     <input {...register('contact', { required: true })} type="number" placeholder="emergency contact" className="input input-bordered w-full" />
                                 </label>
                             </div>
-                            <button className="btn btn-warning w-full">Add Camps</button>
+                            <button className="btn btn-primary w-full">Add Camps</button>
                         </form>
 
 

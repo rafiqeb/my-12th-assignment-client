@@ -20,7 +20,7 @@ const PaymentHistory = () => {
         <div>
             <Helmet><title>HealthAid | Payment History</title></Helmet>
             <h2 className="text-3xl font-bold text-center my-6">Payment History</h2>
-            <div className="p-6">
+            <div className="p-6 overflow-x-auto">
                 <table className="min-w-full border border-gray-300">
                     <thead className="bg-gray-100">
                         <tr>

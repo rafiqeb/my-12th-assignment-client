@@ -18,7 +18,7 @@ const RecentCamps = () => {
     }, [axiosPublic])
 
     return (
-        <div id="recentCamps" className="mt-16">
+        <div id="recentCamps" className="mt-24">
             <h2 className="text-4xl font-bold text-center">Recent Medical Camps</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
                 {
@@ -26,7 +26,7 @@ const RecentCamps = () => {
                 }
             </div>
             <Link to='/camps'>
-                <button className="btn btn-warning mt-8 mb-4">See All Camps</button>
+                <button className="btn btn-outline border-2 border-orange-400 bg-slate-200 mt-12 mb-4">See All Camps</button>
             </Link>
         </div>
     );

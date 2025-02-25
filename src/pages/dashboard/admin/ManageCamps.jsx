@@ -74,15 +74,15 @@ const ManageCamps = () => {
         <div>
             <Helmet><title>HealthAid | Manage Camps</title></Helmet>
             {/* search functionality */}
-            <div className="flex justify-evenly">
+            <div className="flex flex-col md:flex-row gap-6 items-center justify-evenly">
                 <h2 className="text-3xl font-bold">Manage Camps</h2>
                 <div className="join">
                     <input onChange={(e) => setSearch(e.target.value)} className="input input-bordered join-item" placeholder="search" />
-                    <button className="btn btn-accent join-item rounded-r-full">Search</button>
+                    <button className="btn btn-primary join-item rounded-r-full">Search</button>
                 </div>
             </div>
             {/* table formate all data */}
-            <div className="p-6">
+            <div className="p-6 overflow-x-auto">
                 <table className="min-w-full border border-gray-300">
                     <thead className="bg-gray-100">
                         <tr>

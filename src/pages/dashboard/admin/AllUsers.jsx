@@ -84,10 +84,10 @@ const AllUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>
-                                    {user.role === 'admin' ? 'Admin' : <button onClick={() => handleMakeAdmin(user)} className="btn btn-lg bg-orange-500 text-white text-2xl"><FaUsers /></button>}
+                                    {user.role === 'admin' ? 'Admin' : <button onClick={() => handleMakeAdmin(user)} className="btn btn-outline text-2xl"><FaUsers /></button>}
                                 </td>
                                 <td>
-                                    <button onClick={() => handleDelete(user._id)} className="btn btn-ghost btn-lg text-red-500"><FaTrashAlt /></button>
+                                    <button onClick={() => handleDelete(user._id)} className="btn btn-ghost text-red-500 text-xl"><FaTrashAlt /></button>
                                 </td>
                             </tr>)
                         }

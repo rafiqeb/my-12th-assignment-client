@@ -12,24 +12,26 @@ import banner4 from '../assets/banner 4.jpg'
 
 const Banner = () => {
     return (
-        <div>
-            <Swiper
-                pagination={{
-                    type: 'fraction',
-                }}
-                autoplay={{
-                    delay: 3000,
-                    disableOnInteraction: false,
-                }}
-                navigation={true}
-                modules={[Pagination, Autoplay, Navigation]}
-                className="mySwiper"
-            >
-                <SwiperSlide><img className='w-full lg:h-[620px]' src={banner1} alt="" /></SwiperSlide>
-                <SwiperSlide><img className='w-full lg:h-[620px]' src={banner2} alt="" /></SwiperSlide>
-                <SwiperSlide><img className='w-full lg:h-[620px]' src={banner3} alt="" /></SwiperSlide>
-                <SwiperSlide><img className='w-full lg:h-[620px]' src={banner4} alt="" /></SwiperSlide>
-            </Swiper>
+        <div className=''>
+            <div className='py-10 px-2'>
+                <Swiper
+                    pagination={{
+                        type: 'fraction',
+                    }}
+                    autoplay={{
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    }}
+                    navigation={true}
+                    modules={[Pagination, Autoplay, Navigation]}
+                    className="mySwiper mt-16"
+                >
+                    <SwiperSlide><img className='w-full lg:h-[620px]' src={banner1} alt="" /></SwiperSlide>
+                    <SwiperSlide><img className='w-full lg:h-[620px]' src={banner2} alt="" /></SwiperSlide>
+                    <SwiperSlide><img className='w-full lg:h-[620px]' src={banner3} alt="" /></SwiperSlide>
+                    <SwiperSlide><img className='w-full lg:h-[620px]' src={banner4} alt="" /></SwiperSlide>
+                </Swiper>
+            </div>
         </div>
     );
 };

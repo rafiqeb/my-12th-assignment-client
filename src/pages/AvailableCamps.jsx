@@ -46,23 +46,23 @@ const AvailableCamps = () => {
                 <span className="loading loading-spinner loading-lg"></span>
             </div>)}
             <div className="bg-base-100 w-full py-6 rounded-lg">
-                <h2 className="text-4xl font-bold text-center mt-20">Popular Medical Camps</h2>
+                <h2 className="text-4xl font-bold text-center mt-20">Available Camps</h2>
             </div>
 
             {/* sort and search functionality */}
             <div className="flex flex-col md:flex-row items-center gap-8 md: justify-evenly mt-6">
                 <div className="dropdown dropdown-right">
-                    <div tabIndex={0} role="button" className="btn btn-accent m-1">Sort By</div>
+                    <div tabIndex={0} role="button" className="btn btn-primary m-1">Sort By</div>
                     <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] p-2 shadow">
                         <li onClick={() => handleSort('register')}><a>Most Registered</a></li>
                         <li onClick={() => handleSort('fees')}><a>Camp Fees</a></li>
                         <li onClick={() => handleSort('name')}><a>Camp Name</a></li>
                     </ul>
                 </div>
-                <button onClick={handleToggle} className="btn btn-accent">Change Layout</button>
+                <button onClick={handleToggle} className="btn btn-primary">Change Layout</button>
                 <div className="join">
                     <input onChange={(e) => setSearch(e.target.value)} className="input input-bordered join-item" placeholder="search" />
-                    <button className="btn btn-accent join-item rounded-r-full">Search</button>
+                    <button className="btn btn-primary join-item rounded-r-full">Search</button>
                 </div>
             </div>
             {layout ? (

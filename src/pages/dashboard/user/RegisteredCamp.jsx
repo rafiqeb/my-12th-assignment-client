@@ -73,11 +73,11 @@ const RegisteredCamp = () => {
     return (
         <div>
             <Helmet><title>HealthAid | Registered Camps</title></Helmet>
-            <div className="flex justify-evenly mb-8">
+            <div className="flex flex-col md:flex-row gap-6 items-center justify-evenly mb-8">
                 <h2 className="text-3xl font-bold">Register Camps: {joinCamps.length}</h2>
                 <h2 className="text-3xl font-bold">Total Camp Fees: ${totalPrice}</h2>
             </div>
-            <div className="p-6">
+            <div className="py-6 overflow-x-auto">
                 <table className="min-w-full border border-gray-300">
                     <thead className="bg-gray-100">
                         <tr>
