@@ -138,7 +138,7 @@ const RegisteredCamp = () => {
                                 required
                                 type="number" placeholder="rating" step='0.1' className="input input-bordered w-full" />
                         </label>
-                        <button className="btn btn-warning w-full">Confirm</button>
+                        <button className="btn btn-primary w-full">Confirm</button>
                     </form>
                 </div>
                 <form method="dialog" className="modal-backdrop">
